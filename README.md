@@ -90,9 +90,10 @@ backend:
   email_smtp_host: test   # insert the smtp host here
   wallet_private_key_hex: 43ab301   # insert the mumbai matic wallet private key in hex here
   wallet_address: test   # insert the corresponding wallet address here
- ```bash
+ ```
 
-**4.2** Install elonmask and you are ready to go!
+**4.2** 
+Install elonmask and you are ready to go!
 ```bash
 helm repo add elonmask https://elonwallet-io.github.io/helm-deployment/
 helm install elonmask elonmask/elonmask-pre --values values.yaml

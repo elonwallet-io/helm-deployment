@@ -30,6 +30,7 @@ helm install calico projectcalico/tigera-operator --version v3.25.1 --namespace 
 **2.1** Set up a load balancer. This step differs depending on whether you are deploying on bare metal or in a cloud. Here,
 we want to get a public ip address for a kubernetes load balancer service. This load balancer service needs to obtain the public IP address associated with your domain, which you want to use. 
 If you are in a cloud, refer to your cloud provider's documentation and skip to 3 afterwards.
+
 **2.2** 
 
 For a bare metall set up, install the metallb load balancer:

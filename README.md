@@ -1,7 +1,7 @@
 # Elonwallet Helm Deployment
 ## Requirements
 - A domain and public ip address (The domain should map to that ip)
-- [Helm v3((https://helm.sh/docs/intro/install/))
+- [Helm v3](https://helm.sh/docs/intro/install/)
 - [Kubernetes (Kubelet, Kubectl, Kubeadm) ](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 - At least one node 
 - a container runtime
@@ -11,6 +11,7 @@
 
 ## Set-Up
 **1.1** Initialize a kubernetes cluster and install a networking plugin of your liking. Here is an example using Calico (Skip to 2, if you wish to install another networking plug-in):
+
 **1.2** 
  ```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=unix:///var/run/cri-dockerd.sock
@@ -29,12 +30,15 @@ helm install calico projectcalico/tigera-operator --version v3.25.1 --namespace 
 **2.1** Set up a load balancer. This step differs depending on whether you are deploying on bare metal or in a cloud. Here,
 we want to get a public ip address for a kubernetes load balancer service. This load balancer service needs to obtain the public IP address associated with your domain, which you want to use. 
 If you are in a cloud, refer to your cloud provider's documentation and skip to 3 afterwards.
-**2.2** For a bare metall set up, install the metallb load balancer:
+**2.2** 
+
+For a bare metall set up, install the metallb load balancer:
  ```bash
 helm repo add metallb https://metallb.github.io/metallb
 helm install metallb metallb/metallb -n metallb-system --create-namespace --wait
 ``` 
 **2.3**
+
 Configure metallb to provide the public ip associated with your domain.
 Use the following command, but replace {{ Enter your ip here }} with the ip beforehand.
 
@@ -54,6 +58,7 @@ spec:
 EOF
 ``` 
 **3.1** Install with Helm the missing required dependencies (Istio and Cert-Manager)
+
 **3.2** 
 Cert-Manager is used for automatic tls certificate provisioning and renewal. For the verification of HTTP-01 challenges, cert-manager is deploying an Istio-Ingress and for this to work,   
 istiod has to be configured with meshConfig.ingressService=istio-ingress --set meshConfig.ingressSelector=ingress, to use that ingress for incoming traffic. 

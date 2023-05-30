@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+      tier: frontend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: frontend
+          image: 'dennisfaut/elonwallet-frontend'
+          ports:
+          - containerPort: 443
+          volumeMounts:
+          - mountPath: /certs
+            name: certs
+      volumes:
+      - name: certs
+        secret:
+          secretName: frontend-tls
+          items:
+          - key: tls.crt
+            path: frontend.pem
+          - key: tls.key
+            path: frontend-key.pem

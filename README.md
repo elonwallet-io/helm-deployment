@@ -72,6 +72,7 @@ helm install istio-ingress istio/gateway -n istio-system --create-namespace --wa
 **3.3**
 Now install cert-manager
 ```bash
+helm repo add jetstack https://charts.jetstack.io
 helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.12.0 --set installCRDs=true
 ``` 
 **4.1** Finally, configure a values.yaml to suit your environment.

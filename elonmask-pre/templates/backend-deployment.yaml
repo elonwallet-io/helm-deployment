@@ -23,7 +23,7 @@ spec:
           image: 'dennisfaut/elonwallet-backend'
           env:
           - name: DB_CONNECTION_STRING
-            value: 'postgres://{ .Values.postgres.user }}:{ .Values.postgres.password }}@db-service:5444/{ .Values.postgres.db }}?sslmode=disable'
+            value: 'postgres://{{ .Values.postgres.user }}:{{ .Values.postgres.password }}@db-service:5444/{{ .Values.postgres.db }}?sslmode=disable'
           - name: MORALIS_API_KEY
             value: '{{ .Values.backend.moralis_api_key }}'
           - name: FRONTEND_URL

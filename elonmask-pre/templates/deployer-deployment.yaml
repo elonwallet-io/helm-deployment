@@ -34,7 +34,7 @@ spec:
               value: "https://api.{{ .Values.domain }}"
             - name: SGX_ACTIVATE
               value: {{ .Values.sgx_activate | quote }}
-            - name: DEV_MODE
+            - name: USE_WILDCARD_CERT
               value: "false" 
           ports:
           - containerPort: 8078

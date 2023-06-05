@@ -23,7 +23,7 @@ spec:
           image: 'dennisfaut/elonwallet-deployer:latest'
           env:
             - name: IMAGENAME
-              value: dennisfaut/elonwallet-function:latest
+              value: dennisfaut/elonwallet-function
             - name: SERVERPORT
               value: "8078"
             - name: FRONTEND_URL

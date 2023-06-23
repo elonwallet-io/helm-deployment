@@ -1,7 +1,11 @@
-# specify if you want sgx to be activated | possible values true and false
-sgx_activate: false
 # specify your domain here. Should be equivalent to the frontend host
 domain: example.com
+# specify if you want to enable Knative auto-tls here
+auto_tls: true
+# specify if a certificate should automatically be requested for the front and backend
+cert:
+  frontend: true
+  backend: true
 postgres:
   # specify a db user
   user: test

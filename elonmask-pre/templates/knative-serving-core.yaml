@@ -1385,7 +1385,9 @@ metadata:
   annotations:
     knative.dev/example-checksum: "73d96d1b"
 data:
+  {{- if .Values.auto_tls }}
   auto-tls: "Enabled"
+  {{- end }}
   _example: |
     {{- /*
     ################################

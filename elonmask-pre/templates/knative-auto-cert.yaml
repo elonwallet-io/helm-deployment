@@ -1,4 +1,4 @@
-
+{{- if .Values.auto_tls }}
 ---
 # net-certmanager.yaml
 # Copyright 2020 The Knative Authors
@@ -381,3 +381,4 @@ spec:
     app: net-certmanager-webhook
 
 ---
+{{- end }}

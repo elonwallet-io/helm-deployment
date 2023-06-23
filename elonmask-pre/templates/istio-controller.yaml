@@ -76,7 +76,17 @@ spec:
       hosts:
         - "{{ .Values.domain }}"
         - "api.{{ .Values.domain }}"
-    
+{{- if not .Values.auto_tls }}
+    - hosts:
+        - "*.default.{{ .Values.domain }}"
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: wildcard-tls
+{{- end}} 
 
 ---
 # Copyright 2019 The Knative Authors

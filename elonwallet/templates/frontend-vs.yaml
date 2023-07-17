@@ -10,6 +10,10 @@ spec:
   - knative-serving/front-backend-gateway
   hosts:
   - {{ .Values.domain }}
+  http:
+  - route:
+    - destination:
+        host: frontend.default.svc.cluster.local
   tls:
   - match:
     - port: 443
@@ -17,6 +21,6 @@ spec:
       - {{ .Values.domain }}
     route:
     - destination:
-        host: frontend
+        host: frontend.default.svc.cluster.local
         port:
           number: 443

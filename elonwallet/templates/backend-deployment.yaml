@@ -28,6 +28,8 @@ spec:
             value: '{{ .Values.backend.moralis_api_key }}'
           - name: FRONTEND_URL
             value: 'https://{{ .Values.domain }}'
+          - name: BACKEND_HOST
+            value: 'api.{{ .Values.domain }}'
           - name: DEPLOYER_URL
             value: 'http://deployer-service:8079'
           - name: EMAIL_USER
@@ -47,14 +49,9 @@ spec:
           ports:
           - containerPort: 8443
           volumeMounts:
-          - mountPath: /certs
-            name: certs
+          - mountPath: /data
+            name: data
       volumes:
-      - name: certs
-        secret:
-          secretName: backend-tls
-          items:
-          - key: tls.crt
-            path: backend-cert.pem
-          - key: tls.key
-            path: backend-key.pem
+      - name: data
+        hostPath:
+          path: /etc/backend/data

@@ -35,6 +35,10 @@ spec:
             - name: SGX_ACTIVATE
               value: "false"
             - name: USE_WILDCARD_CERT
-              value: "false" 
+{{- if and (not .Values.development) (not .Values.auto_tls) }}
+              value: "true"
+{{- else }}
+              value: "false"
+{{- end}} 
           ports:
           - containerPort: 8078

@@ -9,7 +9,7 @@ add-helm-repos:
 	helm repo add jetstack https://charts.jetstack.io
 dependencies:
 	helm install calico projectcalico/tigera-operator --version v3.25.1 --namespace tigera-operator --create-namespace --wait
-	@if [ "$(load_balancer)" = "true" ]; then helm install metallb metallb/metallb  --version v0.13.10 -n metallb-system --create-namespace --wait && sed -i 's/IPPLACEHOLDER/$(ip)/g' ./sev-csc-demo/config/ip_pool.yaml &&  kubectl apply -f ./sev-csc-demo/config/ip_pool.yaml; fi
+	@if [ "$(load_balancer)" = "true" ]; then helm install metallb metallb/metallb  --version v0.13.10 -n metallb-system --create-namespace --wait && sed -i 's/IPPLACEHOLDER/$(ip)/g' ./elonwallet/config/ip_pool.yaml &&  kubectl apply -f ./elonwallet/config/ip_pool.yaml; fi
 	helm install istio-base istio/base --version 1.18.0 -n istio-system --create-namespace
 	helm install istiod istio/istiod --version 1.18.0  -n istio-system --set meshConfig.ingressService=istio-ingress --set meshConfig.ingressSelector=ingress --wait
 	helm install istio-ingress istio/gateway --version 1.18.0  -n istio-system --create-namespace --wait
